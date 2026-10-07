@@ -1,0 +1,247 @@
+/* =========================
+   INCOME PAGE
+========================= */
+
+.income-container {
+    width: 100%;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.income-header {
+    margin-bottom: 1.5rem;
+}
+
+.income-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #222260;
+    margin-bottom: 0.4rem;
+}
+
+.income-subtitle {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+/* =========================
+   TOTAL INCOME CARD
+========================= */
+
+.income-total-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.5rem 1.8rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 1px solid rgba(66, 173, 0, 0.12);
+
+    box-shadow: 0 8px 25px rgba(34, 34, 96, 0.08);
+
+    margin-bottom: 2rem;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.income-total-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: #42AD00;
+}
+
+.income-total-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    color: #888;
+
+    margin-bottom: 0.4rem;
+}
+
+.income-total-amount {
+    font-size: 2.3rem;
+    font-weight: 700;
+
+    color: #42AD00;
+
+    margin-bottom: 0.3rem;
+}
+
+.income-total-description {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.income-total-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 16px;
+
+    background: rgba(66, 173, 0, 0.12);
+
+    color: #42AD00;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.income-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr;
+
+    gap: 1.5rem;
+
+    align-items: start;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.income-form-card,
+.income-history-card {
+    background: rgba(255, 255, 255, 0.85);
+
+    border-radius: 22px;
+
+    padding: 1.5rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow: 0 8px 25px rgba(34, 34, 96, 0.07);
+}
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.income-section-heading {
+    margin-bottom: 1.3rem;
+}
+
+.income-section-heading h2 {
+    color: #222260;
+
+    font-size: 1.25rem;
+
+    margin-bottom: 0.3rem;
+}
+
+.income-section-heading p {
+    color: #999;
+
+    font-size: 0.85rem;
+}
+
+/* =========================
+   INCOME HISTORY
+========================= */
+
+.incomes {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    max-height: 520px;
+
+    overflow-y: auto;
+
+    padding-right: 0.3rem;
+}
+
+.incomes::-webkit-scrollbar {
+    width: 5px;
+}
+
+.incomes::-webkit-scrollbar-thumb {
+    background: rgba(34, 34, 96, 0.15);
+
+    border-radius: 10px;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.income-empty {
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 2.5rem 1rem;
+
+    text-align: center;
+
+    border: 1px dashed rgba(34, 34, 96, 0.15);
+}
+
+.income-empty h3 {
+    color: #222260;
+
+    margin-bottom: 0.5rem;
+}
+
+.income-empty p {
+    color: #999;
+
+    font-size: 0.85rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media screen and (max-width: 1000px) {
+
+    .income-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    .income-title {
+        font-size: 1.8rem;
+    }
+
+    .income-total-card {
+        padding: 1.2rem;
+    }
+
+    .income-total-amount {
+        font-size: 1.9rem;
+    }
+
+    .income-form-card,
+    .income-history-card {
+        padding: 1rem;
+    }
+
+}

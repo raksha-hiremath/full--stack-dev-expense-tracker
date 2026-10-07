@@ -1,0 +1,380 @@
+/* =========================
+   EXPENSE PAGE
+========================= */
+
+.expense-container {
+    width: 100%;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.expense-header {
+    margin-bottom: 1.5rem;
+}
+
+.expense-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #222260;
+    margin-bottom: 0.4rem;
+}
+
+.expense-subtitle {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+/* =========================
+   TOTAL EXPENSE CARD
+========================= */
+
+.expense-total-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.5rem 1.8rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 1px solid rgba(245, 102, 146, 0.12);
+
+    box-shadow: 0 8px 25px rgba(34, 34, 96, 0.08);
+
+    margin-bottom: 2rem;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.expense-total-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: #F56692;
+}
+
+.expense-total-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    color: #888;
+
+    margin-bottom: 0.4rem;
+}
+
+.expense-total-amount {
+    font-size: 2.3rem;
+    font-weight: 700;
+
+    color: #F56692;
+
+    margin-bottom: 0.3rem;
+}
+
+.expense-total-description {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.expense-total-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 16px;
+
+    background: rgba(245, 102, 146, 0.12);
+
+    color: #F56692;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.expense-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr;
+
+    gap: 1.5rem;
+
+    align-items: start;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.expense-form-card,
+.expense-history-card {
+    background: rgba(255, 255, 255, 0.85);
+
+    border-radius: 22px;
+
+    padding: 1.5rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow: 0 8px 25px rgba(34, 34, 96, 0.07);
+}
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.expense-section-heading {
+    margin-bottom: 1.3rem;
+}
+
+.expense-section-heading h2 {
+    color: #222260;
+
+    font-size: 1.25rem;
+
+    margin-bottom: 0.3rem;
+}
+
+.expense-section-heading p {
+    color: #999;
+
+    font-size: 0.85rem;
+}
+
+/* =========================
+   EXPENSE HISTORY
+========================= */
+
+.expenses {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    max-height: 520px;
+
+    overflow-y: auto;
+
+    padding-right: 0.3rem;
+}
+
+.expenses::-webkit-scrollbar {
+    width: 5px;
+}
+
+.expenses::-webkit-scrollbar-thumb {
+    background: rgba(34, 34, 96, 0.15);
+
+    border-radius: 10px;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.expense-empty {
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 2.5rem 1rem;
+
+    text-align: center;
+
+    border: 1px dashed rgba(34, 34, 96, 0.15);
+}
+
+.expense-empty h3 {
+    color: #222260;
+
+    margin-bottom: 0.5rem;
+}
+
+.expense-empty p {
+    color: #999;
+
+    font-size: 0.85rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media screen and (max-width: 1000px) {
+
+    .expense-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    .expense-title {
+        font-size: 1.8rem;
+    }
+
+    .expense-total-card {
+        padding: 1.2rem;
+    }
+
+    .expense-total-amount {
+        font-size: 1.9rem;
+    }
+
+    .expense-form-card,
+    .expense-history-card {
+        padding: 1rem;
+    }
+
+}
+/* =========================
+   EXPENSE ITEMS
+========================= */
+
+.expense-card {
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 1.1rem 1.2rem;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    border: 1px solid rgba(34, 34, 96, 0.07);
+
+    box-shadow: 0 5px 18px rgba(34, 34, 96, 0.06);
+
+    transition: all 0.2s ease;
+}
+
+.expense-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 22px rgba(34, 34, 96, 0.1);
+}
+
+.expense-card-main {
+    min-width: 0;
+}
+
+.expense-card-title {
+    color: #222260;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+
+    margin-bottom: 0.25rem;
+}
+
+.expense-card-category {
+    color: #F56692;
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+
+    text-transform: capitalize;
+
+    margin-bottom: 0.3rem;
+}
+
+.expense-card-description {
+    color: #999;
+
+    font-size: 0.78rem;
+
+    margin-bottom: 0.3rem;
+}
+
+.expense-card-date {
+    color: #aaa;
+
+    font-size: 0.72rem;
+}
+
+.expense-card-right {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 0.6rem;
+
+    flex-shrink: 0;
+}
+
+.expense-card-amount {
+    color: #F56692;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+}
+
+.delete-expense-btn {
+    border: none;
+
+    background: rgba(245, 102, 146, 0.1);
+
+    color: #F56692;
+
+    padding: 0.4rem 0.7rem;
+
+    border-radius: 8px;
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.delete-expense-btn:hover {
+    background: #F56692;
+
+    color: #ffffff;
+}
+
+@media screen and (max-width: 600px) {
+
+    .expense-card {
+        align-items: flex-start;
+    }
+
+    .expense-card-right {
+        align-items: flex-end;
+    }
+
+    .expense-card-amount {
+        font-size: 0.9rem;
+    }
+
+}

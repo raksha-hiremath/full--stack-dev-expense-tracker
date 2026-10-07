@@ -1,78 +1,199 @@
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import { useGlobalContext } from '../../context/globalContext';
-import { InnerLayout } from '../../styles/Layouts';
-import Form from '../Form/Form';
-import IncomeItem from '../IncomeItem/IncomeItem';
-import ExpenseForm from './ExpenseForm';
+import { useGlobalContext } from '../../context/globalContext'
+import { InnerLayout } from '../../styles/Layouts'
+import ExpenseForm from './ExpenseForm'
+import '../../styles/expenses.css'
 
 function Expenses() {
-    const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
 
-    useEffect(() =>{
+    const {
+        expenses,
+        getExpenses,
+        deleteExpense,
+        totalExpenses
+    } = useGlobalContext()
+
+    useEffect(() => {
         getExpenses()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const expenseTotal = totalExpenses()
+
     return (
-        <ExpenseStyled>
+        <div className="expense-container">
+
             <InnerLayout>
-                <h1>Expenses</h1>
-                <h2 className="total-income">Total Expense: <span>${totalExpenses()}</span></h2>
-                <div className="income-content">
-                    <div className="form-container">
-                        <ExpenseForm />
+
+                {/* Page Header */}
+
+                <div className="expense-header">
+
+                    <div>
+                        <h1 className="expense-title">
+                            Expenses
+                        </h1>
+
+                        <p className="expense-subtitle">
+                            Track and manage where your money is being spent
+                        </p>
                     </div>
-                    <div className="incomes">
-                        {expenses.map((income) => {
-                            const {_id, title, amount, date, category, description, type} = income;
-                            console.log(income)
-                            return <IncomeItem
-                                key={_id}
-                                id={_id} 
-                                title={title} 
-                                description={description} 
-                                amount={amount} 
-                                date={date} 
-                                type={type}
-                                category={category} 
-                                indicatorColor="var(--color-green)"
-                                deleteItem={deleteExpense}
-                            />
-                        })}
-                    </div>
+
                 </div>
+
+                {/* Total Expense */}
+
+                <div className="expense-total-card">
+
+                    <div>
+                        <p className="expense-total-label">
+                            Total Expenses
+                        </p>
+
+                        <h2 className="expense-total-amount">
+                            ₹{expenseTotal.toLocaleString('en-IN')}
+                        </h2>
+
+                        <p className="expense-total-description">
+                            Total money spent from your recorded expenses
+                        </p>
+                    </div>
+
+                    <div className="expense-total-icon">
+                        ₹
+                    </div>
+
+                </div>
+
+                {/* Main Content */}
+
+                <div className="expense-content">
+
+                    {/* Add Expense */}
+
+                    <div className="expense-form-card">
+
+                        <div className="expense-section-heading">
+
+                            <h2>
+                                Add Expense
+                            </h2>
+
+                            <p>
+                                Record a new expense
+                            </p>
+
+                        </div>
+
+                        <ExpenseForm />
+
+                    </div>
+
+                    {/* Expense History */}
+
+                    <div className="expense-history-card">
+
+                        <div className="expense-section-heading">
+
+                            <h2>
+                                Expense History
+                            </h2>
+
+                            <p>
+                                Your recorded expenses
+                            </p>
+
+                        </div>
+
+                        <div className="expenses">
+
+                            {expenses.length === 0 ? (
+
+                                <div className="expense-empty">
+
+                                    <h3>
+                                        No expenses recorded
+                                    </h3>
+
+                                    <p>
+                                        Add your first expense using the form.
+                                    </p>
+
+                                </div>
+
+                            ) : (
+
+                                expenses.map((expense) => {
+
+                                    const {
+                                        _id,
+                                        title,
+                                        amount,
+                                        date,
+                                        category,
+                                        description
+                                    } = expense
+
+                                    return (
+
+                                        <div
+                                            className="expense-card"
+                                            key={_id}
+                                        >
+
+                                            <div className="expense-card-main">
+
+                                                <div className="expense-card-title">
+                                                    {title}
+                                                </div>
+
+                                                <div className="expense-card-category">
+                                                    {category}
+                                                </div>
+
+                                                <div className="expense-card-description">
+                                                    {description}
+                                                </div>
+
+                                                <div className="expense-card-date">
+                                                    {new Date(date).toLocaleDateString('en-IN')}
+                                                </div>
+
+                                            </div>
+
+                                            <div className="expense-card-right">
+
+                                                <div className="expense-card-amount">
+                                                    - ₹{Number(amount).toLocaleString('en-IN')}
+                                                </div>
+
+                                                <button
+                                                    className="delete-expense-btn"
+                                                    onClick={() => deleteExpense(_id)}
+                                                >
+                                                    Delete
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    )
+
+                                })
+
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </InnerLayout>
-        </ExpenseStyled>
+
+        </div>
     )
 }
-
-const ExpenseStyled = styled.div`
-    display: flex;
-    overflow: auto;
-    .total-income{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #FCF6F9;
-        border: 2px solid #FFFFFF;
-        box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-        border-radius: 20px;
-        padding: 1rem;
-        margin: 1rem 0;
-        font-size: 2rem;
-        gap: .5rem;
-        span{
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--color-green);
-        }
-    }
-    .income-content{
-        display: flex;
-        gap: 2rem;
-        .incomes{
-            flex: 1;
-        }
-    }
-`;
 
 export default Expenses

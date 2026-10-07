@@ -34,8 +34,12 @@ exports.getIncomes = async (req, res) =>{
         const incomes = await IncomeSchema.find().sort({createdAt: -1})
         res.status(200).json(incomes)
     } catch (error) {
-        res.status(500).json({message: 'Server Error'})
-    }
+    console.log('GET INCOMES ERROR:', error)
+    res.status(500).json({
+        message: 'Server Error',
+        error: error.message
+    })
+}
 }
 
 exports.deleteIncome = async (req, res) =>{

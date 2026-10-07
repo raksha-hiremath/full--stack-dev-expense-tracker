@@ -1,0 +1,262 @@
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation {
+    width: 270px;
+    min-width: 270px;
+    height: 100%;
+    padding: 1.8rem 1.2rem;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 26px;
+
+    box-shadow: 0 10px 30px rgba(34, 34, 96, 0.08);
+
+    display: flex;
+    flex-direction: column;
+
+    backdrop-filter: blur(10px);
+}
+
+/* =========================
+   USER
+========================= */
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.5rem;
+}
+
+.user-avatar {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 3px solid #ffffff;
+
+    box-shadow: 0 4px 12px rgba(34, 34, 96, 0.12);
+}
+
+.user-info h2 {
+    font-size: 1.1rem;
+    color: #222260;
+    margin-bottom: 0.2rem;
+}
+
+.user-info p {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.nav-divider {
+    height: 1px;
+    background: rgba(34, 34, 96, 0.08);
+    margin: 1.5rem 0 1rem;
+}
+
+/* =========================
+   MENU TITLE
+========================= */
+
+.menu-heading {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #aaa;
+
+    padding-left: 0.8rem;
+    margin-bottom: 0.7rem;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu-items {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.9rem;
+
+    padding: 0.9rem 1rem;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    color: #777;
+
+    transition: all 0.25s ease;
+}
+
+.menu-item:hover {
+    background: rgba(34, 34, 96, 0.06);
+    color: #222260;
+    transform: translateX(3px);
+}
+
+/* Icon */
+
+.menu-icon {
+    width: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.15rem;
+
+    color: #888;
+
+    transition: all 0.25s ease;
+}
+
+/* Text */
+
+.menu-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* =========================
+   ACTIVE MENU
+========================= */
+
+.menu-item.active {
+    background: #222260;
+
+    color: #ffffff;
+
+    box-shadow: 0 7px 18px rgba(34, 34, 96, 0.2);
+
+    transform: translateX(0);
+}
+
+.menu-item.active .menu-icon {
+    color: #ffffff;
+}
+
+.menu-item.active:hover {
+    background: #222260;
+    color: #ffffff;
+}
+
+/* =========================
+   SIGN OUT
+========================= */
+
+.bottom-nav {
+    margin-top: auto;
+
+    border-top: 1px solid rgba(34, 34, 96, 0.08);
+
+    padding-top: 1rem;
+}
+
+.signout-button {
+    display: flex;
+    align-items: center;
+
+    gap: 0.9rem;
+
+    padding: 0.9rem 1rem;
+
+    border-radius: 13px;
+
+    color: #888;
+
+    cursor: pointer;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.signout-button:hover {
+    background: rgba(245, 102, 146, 0.08);
+    color: #F56692;
+}
+
+.signout-button:hover .menu-icon {
+    color: #F56692;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media screen and (max-width: 900px) {
+
+    .navigation {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .user-info p {
+        display: none;
+    }
+
+    .menu-title {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .navigation {
+        width: 75px;
+        min-width: 75px;
+        padding: 1rem 0.6rem;
+    }
+
+    .user-section {
+        justify-content: center;
+    }
+
+    .user-info,
+    .menu-heading,
+    .menu-title {
+        display: none;
+    }
+
+    .menu-item {
+        justify-content: center;
+        padding: 0.9rem 0.5rem;
+    }
+
+    .menu-icon {
+        font-size: 1.2rem;
+    }
+
+    .signout-button {
+        justify-content: center;
+        padding: 0.9rem 0.5rem;
+    }
+}

@@ -1,76 +1,169 @@
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import { useGlobalContext } from '../../context/globalContext';
-import { InnerLayout } from '../../styles/Layouts';
-import Form from '../Form/Form';
-import IncomeItem from '../IncomeItem/IncomeItem';
+import { useGlobalContext } from '../../context/globalContext'
+import { InnerLayout } from '../../styles/Layouts'
+import Form from '../Form/Form'
+import IncomeItem from '../IncomeItem/IncomeItem'
+import '../../styles/income.css'
 
 function Income() {
-    const {addIncome,incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
 
-    useEffect(() =>{
+    const {
+        incomes,
+        getIncomes,
+        deleteIncome,
+        totalIncome
+    } = useGlobalContext()
+
+    useEffect(() => {
         getIncomes()
     }, [])
+
+    const incomeTotal = totalIncome()
+
     return (
-        <IncomeStyled>
+        <div className="income-container">
+
             <InnerLayout>
-                <h1>Incomes</h1>
-                <h2 className="total-income">Total Income: <span>${totalIncome()}</span></h2>
-                <div className="income-content">
-                    <div className="form-container">
-                        <Form />
+
+                {/* Page Header */}
+
+                <div className="income-header">
+
+                    <div>
+                        <h1 className="income-title">
+                            Income
+                        </h1>
+
+                        <p className="income-subtitle">
+                            Track and manage the money you receive
+                        </p>
                     </div>
-                    <div className="incomes">
-                        {incomes.map((income) => {
-                            const {_id, title, amount, date, category, description, type} = income;
-                            return <IncomeItem
-                                key={_id}
-                                id={_id} 
-                                title={title} 
-                                description={description} 
-                                amount={amount} 
-                                date={date} 
-                                type={type}
-                                category={category} 
-                                indicatorColor="var(--color-green)"
-                                deleteItem={deleteIncome}
-                            />
-                        })}
-                    </div>
+
                 </div>
+
+                {/* Total Income */}
+
+                <div className="income-total-card">
+
+                    <div>
+                        <p className="income-total-label">
+                            Total Income
+                        </p>
+
+                        <h2 className="income-total-amount">
+                            ₹{incomeTotal.toLocaleString('en-IN')}
+                        </h2>
+
+                        <p className="income-total-description">
+                            Total income recorded in your account
+                        </p>
+                    </div>
+
+                    <div className="income-total-icon">
+                        ₹
+                    </div>
+
+                </div>
+
+                {/* Income Content */}
+
+                <div className="income-content">
+
+                    {/* Add Income */}
+
+                    <div className="income-form-card">
+
+                        <div className="income-section-heading">
+
+                            <h2>
+                                Add Income
+                            </h2>
+
+                            <p>
+                                Record a new source of income
+                            </p>
+
+                        </div>
+
+                        <Form />
+
+                    </div>
+
+                    {/* Income History */}
+
+                    <div className="income-history-card">
+
+                        <div className="income-section-heading">
+
+                            <h2>
+                                Income History
+                            </h2>
+
+                            <p>
+                                Your recently recorded income
+                            </p>
+
+                        </div>
+
+                        <div className="incomes">
+
+                            {incomes.length === 0 ? (
+
+                                <div className="income-empty">
+
+                                    <h3>
+                                        No income recorded
+                                    </h3>
+
+                                    <p>
+                                        Add your first income using the form.
+                                    </p>
+
+                                </div>
+
+                            ) : (
+
+                                incomes.map((income) => {
+
+                                    const {
+                                        _id,
+                                        title,
+                                        amount,
+                                        date,
+                                        category,
+                                        description,
+                                        type
+                                    } = income
+
+                                    return (
+                                        <IncomeItem
+                                            key={_id}
+                                            id={_id}
+                                            title={title}
+                                            description={description}
+                                            amount={amount}
+                                            date={date}
+                                            type={type}
+                                            category={category}
+                                            indicatorColor="var(--color-green)"
+                                            deleteItem={deleteIncome}
+                                        />
+                                    )
+
+                                })
+
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </InnerLayout>
-        </IncomeStyled>
+
+        </div>
     )
 }
-
-const IncomeStyled = styled.div`
-    display: flex;
-    overflow: auto;
-    .total-income{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #FCF6F9;
-        border: 2px solid #FFFFFF;
-        box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-        border-radius: 20px;
-        padding: 1rem;
-        margin: 1rem 0;
-        font-size: 2rem;
-        gap: .5rem;
-        span{
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--color-green);
-        }
-    }
-    .income-content{
-        display: flex;
-        gap: 2rem;
-        .incomes{
-            flex: 1;
-        }
-    }
-`;
 
 export default Income

@@ -14,13 +14,15 @@ export const GlobalProvider = ({children}) => {
     const [error, setError] = useState(null)
 
     //calculate incomes
-    const addIncome = async (income) => {
-        const response = await axios.post(`${BASE_URL}add-income`, income)
-            .catch((err) =>{
-                setError(err.response.data.message)
-            })
-        getIncomes()
-    }
+const addIncome = async (income) => {
+    const response = await axios.post(`${BASE_URL}add-income`, income)
+        .catch((err) =>{
+            setError(err.response.data.message)
+        })
+
+    setError(null)
+    getIncomes()
+}
 
     const getIncomes = async () => {
         const response = await axios.get(`${BASE_URL}get-incomes`)
@@ -44,13 +46,15 @@ export const GlobalProvider = ({children}) => {
 
 
     //calculate incomes
-    const addExpense = async (income) => {
-        const response = await axios.post(`${BASE_URL}add-expense`, income)
-            .catch((err) =>{
-                setError(err.response.data.message)
-            })
-        getExpenses()
-    }
+const addExpense = async (income) => {
+    const response = await axios.post(`${BASE_URL}add-expense`, income)
+        .catch((err) =>{
+            setError(err.response.data.message)
+        })
+
+    setError(null)
+    getExpenses()
+}
 
     const getExpenses = async () => {
         const response = await axios.get(`${BASE_URL}get-expenses`)
